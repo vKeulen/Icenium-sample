@@ -1,21 +1,27 @@
-body
+html, body
 {
     font: Arial, sans-serif;
+    height: 100%
+}
+
+#WrapperLogin
+{
+    padding-top: 50px;
 }
 
 .buttonArea,
-.footerText,
-#geoLocationContainer,
-#helloWorldInput,
-#helloWorldText
+#LoginUsername,
+#LoginPassword
 {
     text-align: center;
 }
 
-#txtName
+#txtUserinput,
+#txtPasswordinput,
+#txtSendinput
 {
     border: 1px solid #AAA;
-    border-radius: 15px;
+    border-radius: 10px;
     position:static;
     margin-left: 1em;
     margin-top: 0.3em;
@@ -23,4 +29,60 @@ body
     background:white;
     color: black;
     padding: 7px;
+}
+
+#sendButton
+{     
+    display: inline-block;     
+    -webkit-border-radius: 12px;     
+    -webkit-box-shadow: 2px 2px 3px #999;      
+    border: solid 3px rgb(110,110,110);     
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(74,74,74,0.85)), color-stop(0.5, rgba(20,20,20,0.75)), color-stop(0.5, rgba(2,2,2,0.75)), to(rgba(14,14,14,0.75)));      
+    color: #fff;     
+    text-shadow: #000 0 1px 0;     
+    font: bold 16px/20px Helvetica, Sans-serif;     
+    padding: 9px 11px; 
+}
+
+#listview
+{
+    font-family: monospace;
+}
+
+#listviewdate
+{
+    text-align: center;
+    font-size: 9px;
+    color: gray;
+    font-family: sans-serif;
+}
+
+.listviewmessageleft
+{
+    font-size: 11px;
+    border: 1px solid gray;
+    display: inline-block;
+    border-radius: 5px;
+    padding: 2px;
+    float: left;
+    background-color: Silver;
+}
+
+.listviewmessageright
+{
+    font-size: 11px;
+    border: 1px solid gray;
+    display: inline-block;
+    border-radius: 5px;
+    padding: 2px;
+    background-color: Azure;
+    float: right;
+}
+
+#WrongLogin
+{
+    text-align: center;
+    font-style: italic;
+    font-size: 13px;
+    color: red;
 }

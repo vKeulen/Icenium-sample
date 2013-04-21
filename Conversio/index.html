@@ -6,62 +6,65 @@
         <script src="cordova.js"></script>
         <script src="kendo/js/jquery.min.js"></script>
         <script src="kendo/js/kendo.mobile.min.js"></script>
-        <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
-        <script src="scripts/hello-world.js"></script>
+        <script src="scripts/conversio.js"></script>
 
         <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
-        <link href="styles/main.css" rel="stylesheet" />
+        <link href="styles/main.css" rel="stylesheet" />    
     </head>
     <body>
-        <div data-role="view" id="tabstrip-home" data-title="Hello World!">
-            <h1>Welcome!</h1>
-            <p>
-                Icenium&trade; enables you to build cross-platform device applications regardless of your 
-                development platform by combining the convenience of a local development toolset with the 
-                power and flexibility of the cloud.
-            </p>
+        <!-- View and template for the messagepage -->
+        <div data-role="view" id="messages" data-title="Messages" data-layout="mobile-messages">
+            <ul id="listview"></ul>
         </div>
+        <script id="listview-template" type="text/x-kendo-template">
+            <div id="listviewdate">#= senddate#</div>
+                <!-- data.ID == 'null' means that you send message yourself -->
+                # if (data.ID != 'null') { # <div class="listviewmessageleft">#= message#</div> # }
+                else if (data.ID == 'null') { # <div class="listviewmessageright">#= message#</div> # } #               
+        </script>
 
-        <div data-role="view" id="tabstrip-uiinteraction" data-title="UI Interaction">
-            <h1>Say Hello!</h1>
-            <div id='helloWorldInput'>
-                <label for="txtName" style="display: inline-block;">Enter your name:</label>
-                <input type="text" id="txtName" value="" />
+        <!-- View for the loginpage -->
+        <div data-role="view" id="login" data-title="Login" data-layout="mobile-login">
+           <div id="WrapperLogin">
+            <div id='WrongLogin'></div>
+            <div id='LoginUsername'>
+                <label for="txtUsername" style="display: block;">Username</label>
+                <input type="text" id="txtUserinput" value="" />
             </div>
-            <div id='helloWorldText' style="display:block;"></div>
+            <div id='LoginPassword'>
+                <label for="txtPassword" style="display: block;">Password</label>
+                <input type="password" id="txtPasswordinput" value="" />
+            </div>
             <div class="buttonArea">
-                <a id="resetButton" data-role="button" data-click="sayHelloReset" data-icon="refresh">Reset</a>
-                <a id="submitButton" data-role="button" data-click="sayHello" data-icon="compose">Submit</a>
+                <a id="resetButton" data-role="button" data-click="DoReset" data-icon="refresh">Reset</a>
+                <a id="submitButton" data-role="button" data-click="DoLogin" data-icon="compose">Login</a>
             </div>
+          </div>     
         </div>
-
-        <div data-role="view" id="tabstrip-geolocation" data-title="Geolocation">
-            <h1>My Location</h1>
-            <div id="geoLocationContainer">
-                <div id="myLocation">Unable to get location information. Please check your network connection and try again.</div>
-                <a id="refreshMap" data-role="button" data-click="getLocation" data-icon="refresh">Refresh Location</a>
-                <div id="map_canvas"></div>
-            </div>
-        </div>
-
-        <div data-role="layout" data-id="mobile-tabstrip">
+        <!-- Layout for the login view -->
+        <div data-role="layout" data-id="mobile-login">
             <header data-role="header">
                 <div data-role="navbar">
                     <span data-role="view-title"></span>
                 </div>
             </header>
-
-            <div data-role="footer">
-                <div data-role="tabstrip">
-                    <a href="#tabstrip-home" data-icon="home">Home</a>
-                    <a href="#tabstrip-uiinteraction" data-icon="share">UI Interaction</a>
-                    <a href="#tabstrip-geolocation" data-icon="globe">Geolocation</a>
+        </div>        
+        <!-- Layout for the mesage view same as login but with footer for send button -->
+        <div data-role="layout" data-id="mobile-messages">
+            <header data-role="header">
+                <div data-role="navbar">
+                    <span data-role="view-title"></span>
                 </div>
-            </div>
-        </div>
-
+            </header>
+           <footer data-role="footer">
+               <div data-role="tabstrip">
+                    <input type="text" id="txtSendinput" value="" />
+                    <button type="button" id="sendButton" onclick="DoSend()">Send</button>
+               </div>
+           </footer>            
+        </div>        
         <script>
-            var app = new kendo.mobile.Application(document.body, { transition: "slide", layout: "mobile-tabstrip" });
+            app = new kendo.mobile.Application(document.body);
         </script>
     </body>
 </html>
